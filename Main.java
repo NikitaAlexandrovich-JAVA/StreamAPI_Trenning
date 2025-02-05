@@ -3,9 +3,28 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
+// найти множество всех рас
+        System.out.println("Множество всех расс в игре составляет : "+getCountSpecies() + " единиц");
 
+// посчитать общее количество золота на карте
+// найти количество объектов по координате x = 2
+// найти третьего по количеству золота на карте
+// посчитать общее количество золота по расе
+// найти второго по количеству золота на каждой клетке
 
     }
+
+    static Integer getCountSpecies(){
+        Integer countSpecies =GameWorld.game.values().stream()
+                .flatMap(list->list.stream())
+                .map(gameObject -> gameObject.getRace())
+                .distinct().
+                toList().
+                size();
+      return countSpecies;
+    }
+
+
     class GameWorld {
         public static final Map<Coordinate,List<GameObject>> game =
                 Map.ofEntries(
@@ -39,6 +58,13 @@ public class Main {
         }
 
 
+        public String getRace() {
+            return race;
+        }
+
+        public Integer getGold() {
+            return gold;
+        }
     }
 
 
