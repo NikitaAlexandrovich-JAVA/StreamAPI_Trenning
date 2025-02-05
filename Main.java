@@ -4,9 +4,10 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
 // найти множество всех рас
-        System.out.println("Множество всех расс в игре составляет : "+getCountSpecies() + " единиц");
+        System.out.println("Множество всех расс в игре составляет: "+getCountSpecies() + " ед.");
+// посчитать общее количество золота на
+        System.out.println("Общее количество золота на карте: "+calculateGold()+" ед.");
 
-// посчитать общее количество золота на карте
 // найти количество объектов по координате x = 2
 // найти третьего по количеству золота на карте
 // посчитать общее количество золота по расе
@@ -22,6 +23,14 @@ public class Main {
                 toList().
                 size();
       return countSpecies;
+    }
+
+    static Integer calculateGold (){
+        Integer sumGold = GameWorld.game.values().stream()
+                .flatMap(list->list.stream())
+                .mapToInt(GameObject->GameObject.getGold())
+                .sum();
+        return sumGold;
     }
 
 
